@@ -11,6 +11,7 @@ public class LeverOpener : MonoBehaviour
     private void Start()
     {
          originalRotation= SpiningWheel.transform.rotation;
+
     }
     private void Update()
     {

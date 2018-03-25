@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour {
 
@@ -59,6 +60,12 @@ public class PlayerController : MonoBehaviour {
         if (hitStun == false)
         {
 
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+
+            }
+
 
             if (Input.GetKey(KeyCode.D))
             {
@@ -70,14 +77,22 @@ public class PlayerController : MonoBehaviour {
                     //sword.TurnBool();
                 }
                 myAnimator.SetBool("Running", true);
+
                 gameObject.transform.Translate(direction * speed * Time.deltaTime, 0, 0);
             }
             if (Input.GetKeyUp(KeyCode.D))
             {
+                gameObject.GetComponent<AudioSource>().Stop();
+
                 myAnimator.SetBool("Running", false);
             }
             if (Input.GetKey(KeyCode.A))
             {
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    gameObject.GetComponent<AudioSource>().Play();
+
+                }
 
                 if (lookingRight == true)
                 {
@@ -91,6 +106,8 @@ public class PlayerController : MonoBehaviour {
             }
             if (Input.GetKeyUp(KeyCode.A))
             {
+                gameObject.GetComponent<AudioSource>().Stop();
+
                 myAnimator.SetBool("Running", false);
             }
             if (Input.GetKeyDown(KeyCode.W) && grounded == true)
