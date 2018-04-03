@@ -12,7 +12,14 @@ public class SpikeBall : MonoBehaviour {
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
-        shotDuration = GetComponentInParent<EnemyDropper>().GetShotDuration();
+        if (GetComponentInParent<EnemyDropper>() != null)
+        {
+            shotDuration = GetComponentInParent<EnemyDropper>().GetShotDuration();
+        }
+        else
+        {
+            shotDuration = GetComponentInParent<GreaterDropper>().GetShotDuration();
+        }
     }
 
     // Update is called once per frame

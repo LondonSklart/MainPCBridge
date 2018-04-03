@@ -24,7 +24,7 @@ public class Wall : MonoBehaviour {
     {
         if (goingDown)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPosition, 1 * Time.deltaTime);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPosition, 0.5f * Time.deltaTime);
         }
    
 

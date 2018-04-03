@@ -290,6 +290,8 @@
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyDropper.cs" />
     <Compile Include="Assets\Scripts\EnemyMage.cs" />
+    <Compile Include="Assets\Scripts\GreaterDropper.cs" />
+    <Compile Include="Assets\Scripts\GreaterEnemy.cs" />
     <Compile Include="Assets\Scripts\GreaterMage.cs" />
     <Compile Include="Assets\Scripts\HomingMagicMissile.cs" />
     <Compile Include="Assets\Scripts\LeverOpener.cs" />
