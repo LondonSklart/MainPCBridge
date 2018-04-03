@@ -23,12 +23,16 @@ public class PlayerController : MonoBehaviour {
     Vector3 stompvector = new Vector3(0, -1200, 0);
     Rigidbody playerbody;
     Animator myAnimator;
+    AudioManager audioManager;
+    public AudioSource jumpingSound;
+    public AudioSource getHitSound;
     public SwordHitBoxFollow sword;
     public Image healthbar;
 
     private void Start()
     {
         health = startinghealth;
+        audioManager = AudioManager.instance;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         playerbody = gameObject.GetComponent<Rigidbody>();
         myAnimator = GetComponentInChildren<Animator>();
@@ -62,19 +66,20 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-                gameObject.GetComponent<AudioSource>().Play();
-
+               // runningSound.Play();
+               // audioManager.Play("RunSound");
             }
 
 
             if (Input.GetKey(KeyCode.D))
             {
+                audioManager.running = true;
+
                 if (lookingRight != true)
                 {
                     gameObject.transform.Rotate(0, 180, 0);
                     direction = 1;
                     lookingRight = true;
-                    //sword.TurnBool();
                 }
                 myAnimator.SetBool("Running", true);
 
@@ -82,15 +87,16 @@ public class PlayerController : MonoBehaviour {
             }
             if (Input.GetKeyUp(KeyCode.D))
             {
-                gameObject.GetComponent<AudioSource>().Stop();
-
+                audioManager.running = false;
                 myAnimator.SetBool("Running", false);
             }
             if (Input.GetKey(KeyCode.A))
             {
+                audioManager.running = true;
+
                 if (Input.GetKeyDown(KeyCode.A))
                 {
-                    gameObject.GetComponent<AudioSource>().Play();
+
 
                 }
 
@@ -99,21 +105,19 @@ public class PlayerController : MonoBehaviour {
                     gameObject.transform.Rotate(0, 180, 0);
                     direction = 1;
                     lookingRight = false;
-                    //sword.TurnBool();
                 }
                 myAnimator.SetBool("Running", true);
                 gameObject.transform.Translate(direction * speed * Time.deltaTime, 0, 0);
             }
             if (Input.GetKeyUp(KeyCode.A))
             {
-                gameObject.GetComponent<AudioSource>().Stop();
-
+                audioManager.running = false;
                 myAnimator.SetBool("Running", false);
             }
             if (Input.GetKeyDown(KeyCode.W) && grounded == true)
             {
 
-
+                jumpingSound.Play();
                     playerbody.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
                     hasJumped = true;
 
@@ -172,14 +176,20 @@ public class PlayerController : MonoBehaviour {
         hitStun = true;
         hitStunTimer = 0.5f;
     }
+    public bool GetGrounded()
+    {
+        return grounded;
+    }
     public void TakeDamage (float damage)
     {
         HitStun();
+        audioManager.GetHitSound();
         health -= damage;
         healthbar.fillAmount = health / startinghealth;
 
         if (health <= 0)
         {
+            audioManager.PlayDeathSound();
             Destroy(gameObject);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Sword : MonoBehaviour {
 
@@ -9,9 +10,12 @@ public class Sword : MonoBehaviour {
     GameObject hitbox;
     Vector3 playerPosition;
     public Animator myAnimator;
+    public AudioSource swingSound;
     private bool canSwing = true;
     private float startingSwingDuration = 0.2f;
     private float swingDuration;
+    public float swingTimer;
+    private float swingCache;
 
     private void Start()
     {
@@ -21,14 +25,16 @@ public class Sword : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.K) && canSwing == true)
+        if (swingCache > 0)
         {
-            //playerPosition = player.transform.position;
-            //playerPosition.x += 1f;
-            //Instantiate(Edgehitbox,playerPosition,transform.rotation);
+            swingCache -= Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.K) && swingCache <= 0)
+        {
+            swingSound.Play();
             Hit();
             myAnimator.SetBool("Attacking",true);
-  
+            swingCache = swingTimer;
         }
         if (Input.GetKey(KeyCode.K))
         {

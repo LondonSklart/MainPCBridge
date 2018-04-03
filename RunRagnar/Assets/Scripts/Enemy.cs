@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class Enemy : MonoBehaviour {
     private float health;
     Vector3 knockBackPosition;
     Quaternion rotation;
+
+    public AudioSource hitSound;
+
     public Image healthbar;
     public ParticleSystem bloodSplash;
     // Use this for initialization
@@ -67,6 +71,7 @@ public class Enemy : MonoBehaviour {
     }
     public void TakeDamage(float damage)
     {
+        hitSound.Play();
         health -= damage;
         healthbar.fillAmount = health / startingHealth;
     }
