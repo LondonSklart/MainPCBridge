@@ -282,6 +282,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\DestroyTimer.cs" />
     <Compile Include="Assets\Scripts\DustRemoval.cs" />
@@ -296,6 +297,7 @@
     <Compile Include="Assets\Scripts\OnHIt.cs" />
     <Compile Include="Assets\Scripts\OnlyLever.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\SpinningWheel.cs" />
     <Compile Include="Assets\Scripts\StartBell.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
