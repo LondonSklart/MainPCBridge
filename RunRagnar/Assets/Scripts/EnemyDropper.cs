@@ -76,7 +76,7 @@ public class EnemyDropper : MonoBehaviour
     }
     public void DropSpikeBall()
     {
-        Instantiate(spikeBall,gameObject.transform.position,transform.rotation);
+        Instantiate(spikeBall,gameObject.transform.position,transform.rotation,gameObject.transform);
     }
     public float GetShotDuration()
     {

@@ -288,6 +288,7 @@
     <Compile Include="Assets\Scripts\DustRemoval.cs" />
     <Compile Include="Assets\Scripts\EndGoal.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyDropper.cs" />
     <Compile Include="Assets\Scripts\EnemyMage.cs" />
     <Compile Include="Assets\Scripts\GreaterMage.cs" />
     <Compile Include="Assets\Scripts\HomingMagicMissile.cs" />
@@ -298,6 +299,7 @@
     <Compile Include="Assets\Scripts\OnlyLever.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
+    <Compile Include="Assets\Scripts\SpikeBall.cs" />
     <Compile Include="Assets\Scripts\SpinningWheel.cs" />
     <Compile Include="Assets\Scripts\StartBell.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
