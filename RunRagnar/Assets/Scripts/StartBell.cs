@@ -16,9 +16,8 @@ public class StartBell : MonoBehaviour
     {
 
       
-            Debug.Log("ass");
         animator.SetTrigger("Game");
-            cameraController.StartGame();
+        cameraController.StartGame();
         
     }
 }

@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e08e2d4c54aad0478258eb54e795261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spikeBall: {fileID: 1437903369143558, guid: 8c0b217470fa6d646bde51197e43c1a7, type: 2}
+  spikeBall: {fileID: 1159995858305366, guid: 8c0b217470fa6d646bde51197e43c1a7, type: 2}
   bloodSpray: {fileID: 1090563999798236, guid: 7507c79c80855594db26ec4a8dcec92c, type: 2}
   damage: 2
   startingHealth: 10

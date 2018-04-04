@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
 
             Vector3 myVector = new Vector3(gameObject.transform.right.x, gameObject.transform.up.y, 0);
 
-            if (Physics.Raycast(gameObject.transform.position,myVector,1) || Physics.Raycast(gameObject.transform.position, gameObject.transform.right, 0.8f))
+            if (Physics.Raycast(gameObject.transform.position,myVector,0.8f) || Physics.Raycast(gameObject.transform.position, gameObject.transform.right, 0.6f))
             {
                 playerbody.velocity = new Vector2 (0, playerbody.velocity.y);
             }
