@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     private bool hasJumped = false;
     private bool hasStomped = false;
     private bool hitStun = false;
-    private int jumpHeight = 10;
+    public int jumpHeight = 10;
     private bool lookingRight = true;
     private int direction = 1;
     private float hitStunTimer = 0f;
@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
     Rigidbody playerbody;
     Animator myAnimator;
     AudioManager audioManager;
+    Vector3 movement;
+    Collider playerCollider;
     public AudioSource jumpingSound;
     public AudioSource getHitSound;
     public SwordHitBoxFollow sword;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Start()
     {
+        playerCollider = gameObject.GetComponent<Collider>();
         health = startinghealth;
         audioManager = AudioManager.instance;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
@@ -60,15 +63,24 @@ public class PlayerController : MonoBehaviour {
         }
 
 
+        if (hitStun == false)
+        {
+            movement = new Vector3(Input.GetAxisRaw("Horizontal") * speed * Time.fixedDeltaTime, playerbody.velocity.y, 0);
+            playerbody.velocity = movement;
+
+            Vector3 myVector = new Vector3(gameObject.transform.right.x, gameObject.transform.up.y, 0);
+
+            if (Physics.Raycast(gameObject.transform.position,myVector,1) || Physics.Raycast(gameObject.transform.position, gameObject.transform.right, 0.8f))
+            {
+                playerbody.velocity = new Vector2 (0, playerbody.velocity.y);
+            }
+
+        }
+
 
         if (hitStun == false)
         {
 
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-               // runningSound.Play();
-               // audioManager.Play("RunSound");
-            }
 
 
             if (Input.GetKey(KeyCode.D))
@@ -83,22 +95,19 @@ public class PlayerController : MonoBehaviour {
                 }
                 myAnimator.SetBool("Running", true);
 
-                gameObject.transform.Translate(direction * speed * Time.deltaTime, 0, 0);
             }
             if (Input.GetKeyUp(KeyCode.D))
             {
+
                 audioManager.running = false;
                 myAnimator.SetBool("Running", false);
             }
             if (Input.GetKey(KeyCode.A))
             {
+
                 audioManager.running = true;
 
-                if (Input.GetKeyDown(KeyCode.A))
-                {
 
-
-                }
 
                 if (lookingRight == true)
                 {
@@ -107,10 +116,10 @@ public class PlayerController : MonoBehaviour {
                     lookingRight = false;
                 }
                 myAnimator.SetBool("Running", true);
-                gameObject.transform.Translate(direction * speed * Time.deltaTime, 0, 0);
             }
             if (Input.GetKeyUp(KeyCode.A))
             {
+
                 audioManager.running = false;
                 myAnimator.SetBool("Running", false);
             }
@@ -191,6 +200,26 @@ public class PlayerController : MonoBehaviour {
         {
             audioManager.PlayDeathSound();
             Destroy(gameObject);
+        }
+    }
+    public void FinalCollisionCheck()
+    {
+        // Get the velocity
+        Vector2 moveDirection = new Vector2(playerbody.velocity.x * Time.fixedDeltaTime, 0.2f);
+
+        // Get bounds of Collider
+        var bottomRight = new Vector2(playerCollider.bounds.max.x,playerCollider.bounds.max.y);
+        var topLeft = new Vector2(playerCollider.bounds.min.x, playerCollider.bounds.min.y);
+
+        // Move collider in direction that we are moving
+        bottomRight += moveDirection;
+        topLeft += moveDirection;
+
+        // Check if the body's current velocity will result in a collision
+        if (Physics2D.OverlapArea(topLeft, bottomRight))
+        {
+            // If so, stop the movement
+            playerbody.velocity = new Vector3(0, playerbody.velocity.y, 0);
         }
     }
 }
