@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     Animator myAnimator;
     AudioManager audioManager;
     Vector3 movement;
+    Vector3 myNegativeVector;
     Collider playerCollider;
     public AudioSource jumpingSound;
     public AudioSource getHitSound;
@@ -69,14 +70,16 @@ public class PlayerController : MonoBehaviour {
             playerbody.velocity = movement;
 
             Vector3 myVector = new Vector3(gameObject.transform.right.x, gameObject.transform.up.y, 0);
+            myNegativeVector = gameObject.transform.position;
+            myNegativeVector.y -=0.49f;
 
-            if (Physics.Raycast(gameObject.transform.position,myVector,0.8f) || Physics.Raycast(gameObject.transform.position, gameObject.transform.right, 0.6f))
+            if (Physics.Raycast(gameObject.transform.position,myVector,0.8f) || Physics.Raycast(gameObject.transform.position, gameObject.transform.right, 0.6f)||Physics.Raycast(myNegativeVector,gameObject.transform.right,0.6f))
             {
                 playerbody.velocity = new Vector2 (0, playerbody.velocity.y);
             }
 
         }
-
+        Debug.DrawRay(myNegativeVector, gameObject.transform.right);
 
         if (hitStun == false)
         {
