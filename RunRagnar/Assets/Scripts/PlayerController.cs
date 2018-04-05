@@ -194,35 +194,21 @@ public class PlayerController : MonoBehaviour {
     }
     public void TakeDamage (float damage)
     {
-        HitStun();
-        audioManager.GetHitSound();
-        health -= damage;
-        healthbar.fillAmount = health / startinghealth;
-
-        if (health <= 0)
+        if (hitStun == false)
         {
-            audioManager.PlayDeathSound();
-            Destroy(gameObject);
+
+
+            HitStun();
+            audioManager.GetHitSound();
+            health -= damage;
+            healthbar.fillAmount = health / startinghealth;
+
+            if (health <= 0)
+            {
+                audioManager.PlayDeathSound();
+                Destroy(gameObject);
+            }
         }
     }
-    public void FinalCollisionCheck()
-    {
-        // Get the velocity
-        Vector2 moveDirection = new Vector2(playerbody.velocity.x * Time.fixedDeltaTime, 0.2f);
 
-        // Get bounds of Collider
-        var bottomRight = new Vector2(playerCollider.bounds.max.x,playerCollider.bounds.max.y);
-        var topLeft = new Vector2(playerCollider.bounds.min.x, playerCollider.bounds.min.y);
-
-        // Move collider in direction that we are moving
-        bottomRight += moveDirection;
-        topLeft += moveDirection;
-
-        // Check if the body's current velocity will result in a collision
-        if (Physics2D.OverlapArea(topLeft, bottomRight))
-        {
-            // If so, stop the movement
-            playerbody.velocity = new Vector3(0, playerbody.velocity.y, 0);
-        }
-    }
 }

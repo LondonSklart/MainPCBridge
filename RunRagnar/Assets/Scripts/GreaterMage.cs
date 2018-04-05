@@ -52,6 +52,8 @@ public class GreaterMage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && player.GetStomp())
         {
+            player.GetComponent<Rigidbody>().AddExplosionForce(5, gameObject.transform.position, 100, 5, ForceMode.Impulse);
+            player.SetStomp(false);
             TakeDamage(player.GetDamage());
         }
         else if (collision.gameObject.tag == "Player")

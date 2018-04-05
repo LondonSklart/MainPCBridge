@@ -50,9 +50,9 @@ public class Enemy : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player" && player.GetStomp())
         {
-            TakeDamage(player.GetDamage());
             player.GetComponent<Rigidbody>().AddExplosionForce(5, gameObject.transform.position, 100, 5, ForceMode.Impulse);
             player.SetStomp(false);
+            TakeDamage(player.GetDamage());
 
         }
         else if (collision.gameObject.tag == "Player")
