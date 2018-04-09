@@ -9,11 +9,12 @@ public class CameraController : MonoBehaviour {
     public float scrollSpeed = 10;
     private bool gameIsOn = false;
     Vector3 playerPosition;
+    Manager manager;
 
     // Use this for initialization
     void Start ()
     {
-
+        manager = Manager.Instance;
 	}
 	
 	// Update is called once per frame
@@ -22,7 +23,7 @@ public class CameraController : MonoBehaviour {
         if (player != null && gameIsOn == true)
         {
             gameObject.transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
-
+            manager.IncreaseScore(1);
 
 
 
@@ -37,5 +38,9 @@ public class CameraController : MonoBehaviour {
     public void StartGame()
     {
         gameIsOn = true;
+    }
+    public void EndGame()
+    {
+        gameIsOn = false;
     }
 }

@@ -15,6 +15,7 @@ public class GreaterEnemy : MonoBehaviour
     public float patrolAreaSize = 100;
     string direction = "Left";
     private float health;
+    public float scoreValue;
     Vector3 knockBackPosition;
     Quaternion rotation;
 
@@ -35,6 +36,8 @@ public class GreaterEnemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            Manager.Instance.IncreaseScore(scoreValue);
+
             Destroy(gameObject);
             Instantiate(bloodSpray, gameObject.transform.position, rotation);
         }

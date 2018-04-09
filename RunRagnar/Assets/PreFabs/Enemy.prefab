@@ -335,6 +335,7 @@ MonoBehaviour:
   damage: 2
   startingHealth: 10
   patrolAreaSize: 100
+  scoreValue: 100
   hitSound: {fileID: 82454334541734260}
   healthbar: {fileID: 114188220416550216}
   bloodSplash: {fileID: 198710349191249546}

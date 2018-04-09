@@ -7,6 +7,7 @@ public class Sword : MonoBehaviour {
 
     public GameObject Edgehitbox;
     public GameObject player;
+    PlayerController playerController;
     GameObject hitbox;
     Vector3 playerPosition;
     public Animator myAnimator;
@@ -19,6 +20,7 @@ public class Sword : MonoBehaviour {
 
     private void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         swingDuration = startingSwingDuration;
     }
 
@@ -63,7 +65,10 @@ public class Sword : MonoBehaviour {
     }
 
 
-private void Hit()
+ 
+
+
+    private void Hit()
     {
 
         Edgehitbox.SetActive(true);

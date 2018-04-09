@@ -13,6 +13,7 @@ public class GreaterDropper : MonoBehaviour
     public float startingHealth = 10;
     private float shotTimer = 2;
     private float health;
+    public float scoreValue;
     [SerializeField]
     private float shotDuration = 2;
     Vector3 knockBackPosition;
@@ -39,6 +40,8 @@ public class GreaterDropper : MonoBehaviour
     {
         if (health <= 0)
         {
+            Manager.Instance.IncreaseScore(scoreValue);
+
             Destroy(gameObject);
             Instantiate(bloodSpray, gameObject.transform.position, rotation);
         }
@@ -58,7 +61,8 @@ public class GreaterDropper : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && player.GetStomp())
         {
-            player.GetComponent<Rigidbody>().AddExplosionForce(5, gameObject.transform.position, 100, 5, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(0, 10, 0);
+
             player.SetStomp(false);
             TakeDamage(player.GetDamage());
         }

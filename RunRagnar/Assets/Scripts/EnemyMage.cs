@@ -14,6 +14,7 @@ public class EnemyMage : MonoBehaviour
     public float startingHealth = 10;
     private float shotTimer = 2;
     private float health;
+    public float scoreValue;
     [SerializeField]
     private float shotDuration = 2;
     Vector3 knockBackPosition;
@@ -21,10 +22,12 @@ public class EnemyMage : MonoBehaviour
     Quaternion shotRotation;
     public Image healthbar;
     public ParticleSystem bloodSplash;
+    Manager manager;
 
     // Use this for initialization
     void Start()
     {
+        manager = Manager.Instance;
         health = startingHealth;
         player = FindObjectOfType<PlayerController>();
         rotation.x = Random.Range(1, 10);
@@ -35,6 +38,7 @@ public class EnemyMage : MonoBehaviour
     {
         if (health <= 0)
         {
+            manager.IncreaseScore(scoreValue);
             Destroy(gameObject);
             Instantiate(bloodSpray, gameObject.transform.position, rotation);
         }
@@ -72,7 +76,7 @@ public class EnemyMage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && player.GetStomp())
         {
-            player.GetComponent<Rigidbody>().AddExplosionForce(5, gameObject.transform.position, 100, 5, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(0, 10, 0);
             player.SetStomp(false);
             TakeDamage(player.GetDamage());
         }

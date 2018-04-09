@@ -266,6 +266,7 @@ MonoBehaviour:
   direction: Left
   damage: 2
   startingHealth: 10
+  scoreValue: 200
   shotDuration: 2
   healthbar: {fileID: 114780143428853722}
   bloodSplash: {fileID: 198219519239201956}

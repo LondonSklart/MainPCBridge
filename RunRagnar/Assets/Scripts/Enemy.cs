@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour {
     Vector3 knockBackPosition;
     Quaternion rotation;
 
+    public float scoreValue;
     public AudioSource hitSound;
 
     public Image healthbar;
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour {
     {
         if (health <= 0)
         {
+            Manager.Instance.IncreaseScore(scoreValue);
             Destroy(gameObject);
             Instantiate(bloodSpray, gameObject.transform.position, rotation);
         }
@@ -50,9 +52,11 @@ public class Enemy : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player" && player.GetStomp())
         {
-            player.GetComponent<Rigidbody>().AddExplosionForce(5, gameObject.transform.position, 100, 5, ForceMode.Impulse);
-            player.SetStomp(false);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(0, 10, 0);
+
             TakeDamage(player.GetDamage());
+            player.SetStomp(false);
+
 
         }
         else if (collision.gameObject.tag == "Player")
@@ -60,6 +64,7 @@ public class Enemy : MonoBehaviour {
             player.TakeDamage(damage);
             knockBackPosition.x = gameObject.transform.position.x + 10;
             knockBackPosition.y = gameObject.transform.position.y + 10;
+
             player.GetComponent<Rigidbody>().AddExplosionForce(5, knockBackPosition, 100,50, ForceMode.Impulse);
         }
         else if (collision.gameObject.tag =="Sword")

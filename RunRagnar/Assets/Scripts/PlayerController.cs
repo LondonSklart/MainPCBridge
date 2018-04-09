@@ -26,7 +26,12 @@ public class PlayerController : MonoBehaviour {
     AudioManager audioManager;
     Vector3 movement;
     Vector3 myNegativeVector;
+    Vector3 lineVector;
+    Vector3 lineVector2;
     Collider playerCollider;
+    RaycastHit hit;
+    RaycastHit middleHit;
+    RaycastHit lowerHit;
     public AudioSource jumpingSound;
     public AudioSource getHitSound;
     public SwordHitBoxFollow sword;
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour {
         playerbody = gameObject.GetComponent<Rigidbody>();
         myAnimator = GetComponentInChildren<Animator>();
 
+ 
     }
 
     // Update is called once per frame
@@ -54,11 +60,21 @@ public class PlayerController : MonoBehaviour {
                 hitStun = false;
             }
         }
-        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.up * -1, 1f))
+        lineVector = gameObject.transform.position;
+        lineVector.y -= 0.49f;
+        lineVector.x -= 0.49f;
+        lineVector2 = lineVector;
+        lineVector2.x += 1f;
+
+
+        Debug.DrawRay(lineVector, gameObject.transform.up * -1);
+        Debug.DrawRay(lineVector2, gameObject.transform.up * -1);
+
+        if (Physics.Raycast(lineVector, gameObject.transform.up * -1, 0.2f)||Physics.Raycast(lineVector2,gameObject.transform.up*-1,0.2f))
         {
             grounded = true;
         }
-        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.up * -1, 1f) == false)
+        else
         {
             grounded = false;
         }
@@ -72,11 +88,40 @@ public class PlayerController : MonoBehaviour {
             Vector3 myVector = new Vector3(gameObject.transform.right.x, gameObject.transform.up.y, 0);
             myNegativeVector = gameObject.transform.position;
             myNegativeVector.y -=0.49f;
+            Ray ray = new Ray(gameObject.transform.position,myVector);
+            Ray lowerRay = new Ray(myNegativeVector, gameObject.transform.right);
+            Ray middleRay = new Ray(gameObject.transform.position, gameObject.transform.right);
 
-            if (Physics.Raycast(gameObject.transform.position,myVector,0.8f) || Physics.Raycast(gameObject.transform.position, gameObject.transform.right, 0.6f)||Physics.Raycast(myNegativeVector,gameObject.transform.right,0.6f))
+            Physics.Raycast(ray, out hit, 0.8f);
+            Physics.Raycast(middleRay,out middleHit ,0.6f);
+            Physics.Raycast(lowerRay, out lowerHit, 0.6f);
+
+
+
+            if (hit.transform != null)
             {
-                playerbody.velocity = new Vector2 (0, playerbody.velocity.y);
+                if (hit.transform.tag == "Ground")
+                {
+                    playerbody.velocity = new Vector2(0, playerbody.velocity.y);
+
+                }
             }
+            if (middleHit.transform != null)
+            {
+                if (middleHit.transform.tag == "Ground")
+                {
+                    playerbody.velocity = new Vector2(0, playerbody.velocity.y);
+
+                }
+            }
+            if (lowerHit.transform != null)
+            {
+                if (lowerHit.transform.tag == "Ground")
+                {
+                    playerbody.velocity = new Vector2(0, playerbody.velocity.y);
+                }
+            }
+
 
         }
         Debug.DrawRay(myNegativeVector, gameObject.transform.right);

@@ -302,6 +302,7 @@ MonoBehaviour:
   bloodSpray: {fileID: 1090563999798236, guid: 7507c79c80855594db26ec4a8dcec92c, type: 2}
   damage: 2
   startingHealth: 10
+  scoreValue: 150
   shotDuration: 2
   healthbar: {fileID: 114606978067224078}
   bloodSplash: {fileID: 198684253898417560}

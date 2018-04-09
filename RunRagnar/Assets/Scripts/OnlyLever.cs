@@ -10,7 +10,6 @@ public class OnlyLever : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Boom");
         if (other.transform.tag == "Sword" && leverOpen == false)
         {
             leverOpen = true;

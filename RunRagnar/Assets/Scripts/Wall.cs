@@ -60,7 +60,6 @@ public class Wall : MonoBehaviour {
        if (gameObject.transform.position.y < maxOpenHeight)
         {
             transform.Translate(0, 0.5f, 0);
-                Debug.Log("dab");
 
         }
         }
