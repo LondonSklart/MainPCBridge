@@ -32,9 +32,10 @@ public class PlayerController : MonoBehaviour {
     RaycastHit hit;
     RaycastHit middleHit;
     RaycastHit lowerHit;
+    public GameObject loseScreen;
     public AudioSource jumpingSound;
     public AudioSource getHitSound;
-    public SwordHitBoxFollow sword;
+    public GameObject downSmash;
     public Image healthbar;
 
     private void Start()
@@ -181,6 +182,8 @@ public class PlayerController : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.J) && grounded == false && hasStomped == false)
             {
+                downSmash.SetActive(true);
+
                 gameObject.GetComponent<Rigidbody>().AddForce(stompvector * Time.deltaTime, ForceMode.Impulse);
                 hasStomped = true;
             }
@@ -197,7 +200,7 @@ public class PlayerController : MonoBehaviour {
 
         if (collision.gameObject.tag != "Enemy")
         {
-            hasStomped = false;
+            SetStomp(false);
         }
 
     }
@@ -214,6 +217,8 @@ public class PlayerController : MonoBehaviour {
         else
         {
             hasStomped = false;
+            downSmash.SetActive(false);
+
         }
     }
     public float GetDamage()
@@ -250,6 +255,7 @@ public class PlayerController : MonoBehaviour {
 
             if (health <= 0)
             {
+                loseScreen.SetActive(true);
                 audioManager.PlayDeathSound();
                 Destroy(gameObject);
             }

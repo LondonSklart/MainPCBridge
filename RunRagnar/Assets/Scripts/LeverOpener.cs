@@ -27,7 +27,7 @@ public class LeverOpener : MonoBehaviour
         if (collision.transform.tag == "Sword")
         {
             wallToOpen.OpenWall("Slow");
-            SpiningWheel.transform.Rotate(0, 10, 0);
+            SpiningWheel.transform.Rotate(0, 20, 0);
         }
     }
 }

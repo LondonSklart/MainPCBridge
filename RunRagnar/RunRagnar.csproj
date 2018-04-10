@@ -292,12 +292,12 @@
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyDropper.cs" />
     <Compile Include="Assets\Scripts\EnemyMage.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GreaterDropper.cs" />
     <Compile Include="Assets\Scripts\GreaterEnemy.cs" />
     <Compile Include="Assets\Scripts\GreaterMage.cs" />
     <Compile Include="Assets\Scripts\HomingMagicMissile.cs" />
     <Compile Include="Assets\Scripts\LeverOpener.cs" />
+    <Compile Include="Assets\Scripts\LoseScreen.cs" />
     <Compile Include="Assets\Scripts\MagicMissile.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />

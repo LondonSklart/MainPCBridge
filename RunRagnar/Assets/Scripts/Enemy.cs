@@ -65,15 +65,17 @@ public class Enemy : MonoBehaviour {
             knockBackPosition.x = gameObject.transform.position.x + 10;
             knockBackPosition.y = gameObject.transform.position.y + 10;
 
-            player.GetComponent<Rigidbody>().AddExplosionForce(5, knockBackPosition, 100,50, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddExplosionForce(5, knockBackPosition, 100, 50, ForceMode.Impulse);
         }
-        else if (collision.gameObject.tag =="Sword")
+        else if (collision.gameObject.tag == "Sword")
         {
             bloodSplash.Play();
             TakeDamage(player.GetDamage());
-           
+
         }
     }
+
+
     public void TakeDamage(float damage)
     {
         hitSound.Play();

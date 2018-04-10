@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour
 
     private float score;
     public Text scoreText;
-
+    PlayerController player;
     public static Manager Instance { get; set; }
 
     private void Awake()

@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource runningSound;
     public AudioSource playerDeath;
+    public AudioSource mainTheme;
     public Sound[] sounds;
 
     public AudioSource[] getHitSounds;
@@ -44,11 +45,7 @@ public class AudioManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-           // Play("RunSound");
-            
-        }
+
         if (running == true && player.GetGrounded())
         {
             if (runningSound.isPlaying == false)
@@ -62,18 +59,10 @@ public class AudioManager : MonoBehaviour
         }
 
     }
-
-    //public void Play(string name)
-    //{
-    //    Sound s = Array.Find(sounds, sound => sound.name == name);
-    //    Debug.Log(s.source.name);
-    //    s.source.Play();
-    //}
-    //public void Stop(string name)
-    //{
-    //    Sound s = Array.Find(sounds, sound => sound.name == name);
-    //    s.source.Stop();
-    //}
+    public void StartTheme()
+    {
+        mainTheme.Play();
+    }
     public void GetHitSound()
     {
         int randomNumber = Random.Range(0,getHitSounds.Length);

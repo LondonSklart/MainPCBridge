@@ -10,11 +10,13 @@ public class CameraController : MonoBehaviour {
     private bool gameIsOn = false;
     Vector3 playerPosition;
     Manager manager;
+    AudioManager audio;
 
     // Use this for initialization
     void Start ()
     {
         manager = Manager.Instance;
+        audio = FindObjectOfType<AudioManager>();
 	}
 	
 	// Update is called once per frame
@@ -29,14 +31,11 @@ public class CameraController : MonoBehaviour {
 
 
 
-            /*
-            playerPosition = player.transform.position;
-            playerPosition.z += -10f;
-            gameObject.transform.position = playerPosition;*/
         }
 	}
     public void StartGame()
     {
+        audio.StartTheme();
         gameIsOn = true;
     }
     public void EndGame()
