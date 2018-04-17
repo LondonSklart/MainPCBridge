@@ -14,6 +14,8 @@ public class EnemyMage : MonoBehaviour
     public float startingHealth = 10;
     private float shotTimer = 2;
     private float health;
+    public AudioSource hitSound;
+
     public float scoreValue;
     [SerializeField]
     private float shotDuration = 2;
@@ -96,6 +98,7 @@ public class EnemyMage : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        hitSound.Play();
         health -= damage;
         healthbar.fillAmount = health / startingHealth;
     }

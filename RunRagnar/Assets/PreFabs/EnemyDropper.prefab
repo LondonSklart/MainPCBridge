@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 4915515368891254}
   - component: {fileID: 65264489713452546}
   - component: {fileID: 114917381740554092}
+  - component: {fileID: 82173565884487030}
   m_Layer: 10
   m_Name: EnemyDropper
   m_TagString: Enemy
@@ -196,6 +197,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 1.53, z: 1}
   m_Center: {x: 0.33, y: 0.3, z: 0}
+--- !u!82 &82173565884487030
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1572270791181048}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8e9ff9c3cf906ed4aaf7cf68e0c04514, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.154
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114360759201061004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,6 +384,7 @@ MonoBehaviour:
   damage: 2
   startingHealth: 10
   scoreValue: 150
+  hitSound: {fileID: 82173565884487030}
   shotDuration: 2
   healthbar: {fileID: 114606978067224078}
   bloodSplash: {fileID: 198684253898417560}

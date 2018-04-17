@@ -14,6 +14,8 @@ public class GreaterDropper : MonoBehaviour
     private float shotTimer = 2;
     private float health;
     public float scoreValue;
+    public AudioSource hitSound;
+
     [SerializeField]
     private float shotDuration = 2;
     Vector3 knockBackPosition;
@@ -82,6 +84,7 @@ public class GreaterDropper : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        hitSound.Play();
         health -= damage;
         healthbar.fillAmount = health / startingHealth;
     }

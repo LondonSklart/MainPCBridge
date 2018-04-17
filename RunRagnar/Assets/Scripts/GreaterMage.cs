@@ -11,6 +11,7 @@ public class GreaterMage : MonoBehaviour
     public GameObject bloodSpray;
     public float damage = 2;
     public float startingHealth = 10;
+    public AudioSource hitSound;
 
     private float shotTimer = 2;
     private float health;
@@ -72,6 +73,7 @@ public class GreaterMage : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        hitSound.Play();
         health -= damage;
         healthbar.fillAmount = health / startingHealth;
     }

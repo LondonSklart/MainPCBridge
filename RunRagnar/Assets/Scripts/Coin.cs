@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Coin : MonoBehaviour
 {
     Animation animation;
+    public AudioSource sound;
 
     private void Start()
     {
@@ -18,7 +20,8 @@ public class Coin : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
             animation.Play();
-            Manager.Instance.IncreaseScore(5000);
+            sound.Play();
+            Manager.Instance.IncreaseScore(100);
             Destroy(gameObject,animation.clip.length);
         }
     }

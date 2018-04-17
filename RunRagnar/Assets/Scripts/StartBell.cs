@@ -6,6 +6,7 @@ public class StartBell : MonoBehaviour
 {
     CameraController cameraController;
     Animator animator;
+    public AudioSource audio;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class StartBell : MonoBehaviour
 
       
         animator.SetTrigger("Game");
+        audio.Play();
         cameraController.StartGame();
         
     }
